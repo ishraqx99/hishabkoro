@@ -3,12 +3,24 @@ import Transaction from '../models/Transaction.js';
 
 export const addBudget = async (req, res) => {
   try {
-    const { category, amount, month } = req.body;
+    const { category, amount } = req.body;
     const user = req.user._id;
 
-    const budget = await Budget.create({ user, category, amount, month });
+    if (!category || amount === undefined || Number(amount) <= 0) {
+      return res.status(400).json({ message: 'Category and a valid amount are required' });
+    }
+
+    const existingBudget = await Budget.findOne({ user, category });
+    if (existingBudget) {
+      return res.status(409).json({ message: 'Budget already exists for this category' });
+    }
+
+    const budget = await Budget.create({ user, category, amount });
     res.status(201).json(budget);
   } catch (err) {
+    if (err.code === 11000) {
+      return res.status(409).json({ message: 'Budget already exists for this category' });
+    }
     res.status(500).json({ message: 'Server Error' });
   }
 };

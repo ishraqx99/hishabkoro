@@ -136,8 +136,9 @@ function AppProvider({ children }) {
         try {
             await axios.post('/api/budgets', budget);
             toast.success('Budget added');
-        } catch {
-            toast.error('Add budget failed');
+        } catch (err) {
+            toast.error(err.response?.data?.message || 'Add budget failed');
+            throw err;
         }
     };
 
