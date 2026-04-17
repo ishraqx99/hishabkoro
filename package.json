@@ -1,0 +1,23 @@
+{
+  "name": "hishabkoro",
+  "version": "1.0.0",
+  "description": "HishabKoro - A modern personal finance manager",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "install": "npm install --workspaces",
+    "dev": "npm run dev --workspaces",
+    "build": "npm run build --workspace=client",
+    "start": "npm run start --workspace=server"
+  },
+  "keywords": [
+    "finance",
+    "budget",
+    "expense-tracker"
+  ],
+  "author": "",
+  "license": "ISC"
+}

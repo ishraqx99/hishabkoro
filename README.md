@@ -1,4 +1,4 @@
-# 💰 CashFlowX
+# 💰 HishabKoro
 
 A modern, user-friendly web application designed to help individuals manage their finances effortlessly. Track income, expenses, and budgets with intuitive visualizations and insightful analytics.
 
